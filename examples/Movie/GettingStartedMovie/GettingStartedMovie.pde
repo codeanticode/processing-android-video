@@ -3,14 +3,16 @@ import in.omerjerk.processing.video.android.*;
 Movie movie;
 
 void setup() {
-  size(1280, 1280, P2D);
+  fullScreen(P2D);
+  orientation(LANDSCAPE);
   movie = new Movie(this, "transit.mp4");
   movie.loop();
   movie.play();
 }
 
 void draw() {
-  image(movie, 0, 0);
+  float w = height  * float(movie.width) / movie.height;
+  image(movie, (width - w) /2, 0, w, height);
 }
 
 void movieEvent(Movie m) {
