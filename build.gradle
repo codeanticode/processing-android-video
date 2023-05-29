@@ -7,12 +7,11 @@ import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import com.android.build.gradle.internal.dependency.ExtractAarTransform
 import com.android.build.gradle.internal.dependency.AarTransform
 import com.android.build.gradle.internal.publishing.AndroidArtifacts
-import com.android.build.gradle.internal.publishing.AndroidArtifacts.ArtifactType
 import com.google.common.collect.ImmutableList
 import org.apache.tools.ant.filters.ReplaceTokens
-import org.gradle.api.artifacts.transform.ArtifactTransform
-import org.gradle.api.artifacts.type.ArtifactTypeDefinition
-import static org.gradle.api.internal.artifacts.ArtifactAttributes.ARTIFACT_FORMAT
+import static com.android.build.gradle.internal.publishing.AndroidArtifacts.ArtifactType
+import static org.gradle.api.artifacts.type.ArtifactTypeDefinition.JAR_TYPE
+import static org.gradle.api.artifacts.type.ArtifactTypeDefinition.ARTIFACT_TYPE_ATTRIBUTE
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
@@ -28,10 +27,8 @@ buildscript {
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath group: 'commons-io', name: 'commons-io', version: '2.5'
-        classpath group: 'org.zeroturnaround', name: 'zt-zip', version: '1.9'
-        //classpath group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.7'
-        //classpath group: 'org.tensorflow', name: 'tensorflow-lite', version: '1.12.0'
+        classpath group: 'commons-io', name: 'commons-io', version: '2.12.0'
+        classpath group: 'org.zeroturnaround', name: 'zt-zip', version: '1.15'
     }
 }
 
@@ -151,7 +148,7 @@ clean.doFirst {
 configurations {
     aarCompileOnly {
         attributes {
-            attribute(ARTIFACT_FORMAT, ArtifactTypeDefinition.JAR_TYPE)
+            attribute(ARTIFACT_TYPE_ATTRIBUTE, JAR_TYPE)
         }
 
         // Add the aar inner jars to the compileClasspath
@@ -164,23 +161,23 @@ configurations {
 }
 
 dependencies {
-    // Transforamtions to extract the classes.jar in the aar package
+    // Transformations to extract the classes.jar in the aar package
     def explodedAarType = ArtifactType.EXPLODED_AAR.getType()
     registerTransform {
-        from.attribute(ARTIFACT_FORMAT, AndroidArtifacts.TYPE_AAR)
-        to.attribute(ARTIFACT_FORMAT, explodedAarType)
+        from.attribute(ARTIFACT_TYPE_ATTRIBUTE, AndroidArtifacts.TYPE_AAR)
+        to.attribute(ARTIFACT_TYPE_ATTRIBUTE, explodedAarType)
         artifactTransform(ExtractAarTransform)
     }
 
     registerTransform {
-        from.attribute(ARTIFACT_FORMAT, explodedAarType)
-        to.attribute(ARTIFACT_FORMAT, "classes.jar")
+        from.attribute(ARTIFACT_TYPE_ATTRIBUTE, explodedAarType)
+        to.attribute(ARTIFACT_TYPE_ATTRIBUTE, "classes.jar")
         artifactTransform(AarTransform) { params(ArtifactType.JAR) }
     }
 
     registerTransform {
-        from.attribute(ARTIFACT_FORMAT, "classes.jar")
-        to.attribute(ARTIFACT_FORMAT, ArtifactTypeDefinition.JAR_TYPE)
+        from.attribute(ARTIFACT_TYPE_ATTRIBUTE, "classes.jar")
+        to.attribute(ARTIFACT_TYPE_ATTRIBUTE, JAR_TYPE)
         artifactTransform(ClassesJarArtifactTransform)
     }
 
@@ -188,11 +185,6 @@ dependencies {
     for (dep in jarDeps) compileOnly dep
     for (dep in aarDeps) aarCompileOnly dep
     for (dep in libNames) compileOnly name: dep
-
-    //add in any files in local folders here, e.g.:
-    //compile name: "tensorflow-lite-1.12.0"
-    //compile group: 'org.tensorflow', name: 'tensorflow-lite', version: '1.12.0'
-    //compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.7'
 }
 
 /**
