@@ -9,20 +9,23 @@ Any sketches using the processing-video library should work the same when using 
 ```
 import processing.video.android.*;
 
-Capture cap;
+Movie movie;
 
 void setup() {
-  size(720, 1280, P2D);
-  cap = new Capture(this, 720, 1280);
-  String[] list = Capture.list();
-  //Use this to print list of resolutions supported by the camera
-  Capture.printCompatibleResolutionsList(cap);
-  cap.setCamera(list[0]);
-  cap.start();
+  fullScreen(P2D);
+  orientation(LANDSCAPE);
+  movie = new Movie(this, "transit.mp4");
+  movie.loop();
+  movie.play();
 }
 
 void draw() {
-  image(cap, 0, 0);
+  float w = height  * float(movie.width) / movie.height;
+  image(movie, (width - w) /2, 0, w, height);
+}
+
+void movieEvent(Movie m) {
+  m.read();
 }
 ```
 

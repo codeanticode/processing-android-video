@@ -12,24 +12,25 @@ float roty = PI/4;
 void setup() {
   fullScreen(P3D);
   orientation(LANDSCAPE);
-  
-  String[] cameras = Capture.list();
-  cameraTex = new Capture(this, cameras[0]);
-  cameraTex.start();
+
+  requestPermission("android.permission.CAMERA", "handlePermission");
+
   textureMode(NORMAL);
   fill(255);
   stroke(color(44,48,32));
 }
 
 void draw() {
-  cameraTex.read();
-  background(255);
-  noStroke();
-  translate(width/2.0, height/2.0, -100);
-  rotateX(rotx);
-  rotateY(roty);
-  scale(230);
-  TexturedCube(cameraTex);
+  if (cameraTex != null) {
+    cameraTex.read();
+    background(255);
+    noStroke();
+    translate(width/2.0, height/2.0, -100);
+    rotateX(rotx);
+    rotateY(roty);
+    scale(230);
+    TexturedCube(cameraTex);
+  }
 }
 
 void TexturedCube(PImage tex) {
@@ -44,7 +45,7 @@ void TexturedCube(PImage tex) {
   // of the screen, but is not otherwised aligned with the X/Z faces. (This
   // just affects what type of symmetry is required if you need seamless
   // tiling all the way around the cube)
-  
+
   // +Z "front" face
   vertex(-1, -1,  1, 0, 0);
   vertex( 1, -1,  1, 1, 0);
@@ -88,4 +89,12 @@ void mouseDragged() {
   float rate = 0.01;
   rotx += (pmouseY-mouseY) * rate;
   roty += (mouseX-pmouseX) * rate;
+}
+
+void handlePermission(boolean granted) {
+  if (granted) {
+    String[] cameras = Capture.list();
+    cameraTex = new Capture(this, cameras[0]);
+    cameraTex.start();
+  }
 }

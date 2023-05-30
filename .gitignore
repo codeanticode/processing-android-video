@@ -1,16 +1,11 @@
-bin
 
-/distribution
-.classpath
-.project
 *.DS_Store
-local.properties
+
 /.idea
+/distribution
 
 debug/.gradle
 debug/.idea
-
-**/examples/**/AndroidManifest.xml
 
 **/*.iml
 **/.DS_Store
@@ -22,5 +17,3 @@ debug/.idea
 .gradle
 
 .java-version
-
-
