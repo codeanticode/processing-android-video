@@ -19,7 +19,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.1'
+        classpath 'com.android.tools.build:gradle:7.3.1'
         classpath group: 'commons-io', name: 'commons-io', version: '2.12.0'
         classpath group: 'org.zeroturnaround', name: 'zt-zip', version: '1.15'
     }
@@ -44,7 +44,7 @@ allprojects {
     configurations.compileOnly.canBeResolved = true
 
     project.archivesBaseName = libName
-    
+
     ext.userHome = System.getProperty("user.home")
     ext.sketchbookLocation = buildProperties.getProperty("sketchbook.location").replace("\${user.home}", userHome)
     ext.replaceEnv = { value ->
