@@ -1,9 +1,9 @@
 /**
- * Getting started example for processing video for Android
+ * Getting started camera example for processing video for Android
  * By Umair Khan
  */
 
-import in.omerjerk.processing.video.android.*;
+import processing.video.android.*;
 
 Capture cap;
 

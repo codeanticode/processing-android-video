@@ -1,12 +1,18 @@
-import in.omerjerk.processing.video.android.*;
+/**
+ * B&W shader example for processing video for Android
+ * By Umair Khan
+ */
+
+import processing.video.android.*;
 
 Capture cap;
 
 PShader bwShader;
 
 void setup() {
-  
   fullScreen(P2D);
+  orientation(LANDSCAPE);
+
   String[] list = Capture.list();
   cap = new Capture(this, list[0]);
   
@@ -17,5 +23,6 @@ void setup() {
 void draw() {
   cap.read();
   shader(bwShader);
-  image(cap, 0, 0);
+  float w = height  * float(cap.width) / cap.height;
+  image(cap, (width - w) /2, 0, w, height);
 }

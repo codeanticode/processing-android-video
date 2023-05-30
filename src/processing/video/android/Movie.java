@@ -1,8 +1,8 @@
-package in.omerjerk.processing.video.android;
+package processing.video.android;
 
 import java.io.IOException;
 
-import in.omerjerk.processing.video.android.callbacks.MediaPlayerHandlerCallback;
+import processing.video.android.callbacks.MediaPlayerHandlerCallback;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.res.AssetFileDescriptor;

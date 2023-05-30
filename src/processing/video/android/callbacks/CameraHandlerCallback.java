@@ -1,4 +1,4 @@
-package in.omerjerk.processing.video.android.callbacks;
+package processing.video.android.callbacks;
 
 import android.graphics.SurfaceTexture;
 

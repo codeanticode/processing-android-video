@@ -1,4 +1,4 @@
-package in.omerjerk.processing.video.android;
+package processing.video.android;
 
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
@@ -6,9 +6,9 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.Arrays;
 
-import in.omerjerk.processing.video.android.helpers.FullFrameRect;
-import in.omerjerk.processing.video.android.helpers.GlUtil;
-import in.omerjerk.processing.video.android.helpers.Texture2dProgram;
+import processing.video.android.helpers.FullFrameRect;
+import processing.video.android.helpers.GlUtil;
+import processing.video.android.helpers.Texture2dProgram;
 import android.app.Activity;
 import android.graphics.SurfaceTexture;
 import android.opengl.GLES20;

@@ -1,4 +1,9 @@
-import in.omerjerk.processing.video.android.*;
+/**
+ * Emboss shader example for processing video for Android
+ * By Umair Khan
+ */
+
+import processing.video.android.*;
 
 Capture cap;
 
@@ -6,6 +11,8 @@ PShader embossShader;
 
 void setup() {
   fullScreen(P2D);
+  orientation(LANDSCAPE);
+
   String[] cameras = Capture.list();
   cap = new Capture(this, cameras[0]);
   cap.start();
@@ -15,5 +22,6 @@ void setup() {
 void draw() {
   cap.read();
   shader(embossShader);
-  image(cap, 0, 0);
+  float w = height  * float(cap.width) / cap.height;
+  image(cap, (width - w) /2, 0, w, height);
 }

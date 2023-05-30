@@ -1,6 +1,6 @@
-package in.omerjerk.processing.video.android;
+package processing.video.android;
 
-import in.omerjerk.processing.video.android.callbacks.CameraHandlerCallback;
+import processing.video.android.callbacks.CameraHandlerCallback;
 
 import java.io.IOException;
 import java.util.ArrayList;

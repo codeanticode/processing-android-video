@@ -1,4 +1,9 @@
-import in.omerjerk.processing.video.android.*;
+/**
+ * Getting started video playback example for processing video for Android
+ * By Umair Khan
+ */
+
+import processing.video.android.*;
 
 Movie movie;
 

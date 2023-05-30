@@ -1,12 +1,13 @@
-# Processing Video implementation for Android
-This library tries to expose the same API endpoints as that of processing-video library for PC.
+# Processing Video library for Android
+
+This library exposes the same API endpoints as that of processing-video library for Java mode.
 Any sketches using the processing-video library should work the same when using this library on Android.
 
 **Demo:** https://www.youtube.com/watch?v=kjqcWGLH6Q8
 
 **A simple example :**
 ```
-import in.omerjerk.processing.video.android.*;
+import processing.video.android.*;
 
 Capture cap;
 
@@ -35,3 +36,9 @@ The backing texture of that PGraphics object is then used as the texture cache f
 ## Building the Project
 
 `gradle dist` will build the project, copy it to the user's Processing sketchbook folder, and prepare a .zip file ready for distribution.
+
+## Authors
+
+* [Mohammad Umair](https://github.com/omerjerk): Original implementation supporting video playback and camera capture, library examples
+* [Kate Hollenbach](http://www.katehollenbach.com): Updates to make the library compatible with Processing 4, updates in gradle build script
+* [Andres Colubri](https://github.com/codeanticode): Updates to gradle build script and examples

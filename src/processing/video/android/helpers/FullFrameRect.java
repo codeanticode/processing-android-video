@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package in.omerjerk.processing.video.android.helpers;
-
-import in.omerjerk.processing.video.android.helpers.Drawable2d.Prefab;
+package processing.video.android.helpers;
 
 /**
  * This class essentially represents a viewport-sized sprite that will be rendered with

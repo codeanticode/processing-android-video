@@ -1,4 +1,9 @@
-import in.omerjerk.processing.video.android.*;
+/**
+ * Cube texturing for processing video for Android
+ * By Umair Khan
+ */
+
+import processing.video.android.*;
 
 Capture cameraTex;
 float rotx = PI/4;
@@ -6,6 +11,7 @@ float roty = PI/4;
 
 void setup() {
   fullScreen(P3D);
+  orientation(LANDSCAPE);
   
   String[] cameras = Capture.list();
   cameraTex = new Capture(this, cameras[0]);
